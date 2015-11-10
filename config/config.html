@@ -9,10 +9,10 @@
   <fieldset>
     <legend>Configuration</legend>
     <label for="url">Gerrit's URL</label>
-    <input type="text" class="span12" ng-model="config.url" placeholder="http://gerrit:29418">
-    <label for="username">User name</label>
+    <input type="text" class="span12" ng-model="config.url" placeholder="http://your.gerrit.url">
+    <label for="username">User name (require enough access level to set review)</label>
     <input type="text" class="span12" ng-model="config.username">
-    <label for="password">User name</label>
+    <label for="password">User password</label>
     <input type="text" class="span12" ng-model="config.password">
   </fieldset>
   <button ng-click="save()" class="btn btn-primary">Save</button>
