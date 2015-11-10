@@ -1,0 +1,39 @@
+{
+  "name": "strider-gerrit-review",
+  "version": "1.0.1",
+  "description": "add gerrit review comment",
+  "main": "webapp.js",
+  "scripts": {
+    "test": "mocha -R spec --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinchung0921/strider-gerrit-review.git"
+  },
+  "keywords": [
+    "strider",
+    "plugin",
+    "template"
+  ],
+  "author": "Kevin Chung",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.65.0"
+  },
+  "strider": {
+    "type": "job",
+    "id": "gerrit-review",
+    "title": "Gerrit Review",
+    "worker": "worker.js",
+    "webapp": "webapp.js",
+    "icon": "gerrit.png",
+    "config": {
+      "controller": "TemplateController"
+    }
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.20.1",
+    "sinon-chai": "^2.5.0"
+  }
+}
