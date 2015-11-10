@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Need to overwrite STRIDER_USER, STRIDER_PASS, STRIDER_URL and ORGANIZATION
+
+branch=""
+project=""
+owner=""
+changeUrl=""
+type="TEST_ONLY"
+for ((i=0;i<=$#;i++)) do
+	#echo "$i" "${!i}";
+	case "${!i}" in 
+		"--branch")
+			i=$((i+1))
+			branch="${!i}";;
+		"--project")
+			i=$((i+1))
+			project="${!i}";;
+		"--change-url")
+			i=$((i+1))
+			changeUrl="${!i}";;
+		"--change-owner")
+			i=$((i+1))
+			owner="${!i}";;
+	esac	
+done
+
+if [ "$branch" != "" ] 
+then
+	if [ "$branch" == "release" ] 
+	then
+		type="TEST_AND_DEPLOY"
+	fi
+
+	curl \
+		-k \
+		-H "Content-Type: application/json" \
+		-d "{\"branch\":\"$branch\", \"type\":\"$type\", \"message\":\"triggered by $owner: $changeUrl\"}" \
+		-u "STRIDER_USER:STRIDER_PASS" \
+		-X POST \
+		STRIDER_URL/ORGANIZATION/"$project"/start
+else
+	echo "no branch name specified!"
+fi
