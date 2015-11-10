@@ -19,8 +19,8 @@ In Strider UI:
 2. Select the Gerrit Review plugin in the left panel, start to configure it
 3. Fill in the Gerrit URL, user name and password. 
 
-This plugin requires modified strider and strider-git plugin
+This plugin requires modified strider and strider-git plugin at following link
 
-https://github.com/kevinchung0921/strider
-https://github.com/kevinchung0921/strider-git 
+[strider](https://github.com/kevinchung0921/strider)
+[strider-git](https://github.com/kevinchung0921/strider-git)
 
