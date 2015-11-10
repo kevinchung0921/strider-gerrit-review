@@ -3,7 +3,9 @@
 This is a gerrit review plugin which will post review comment and vote to gerrit 
 according the test result. 
 
-### User Guide
+In console:
+
+## User Guide
 
 In console:
 
