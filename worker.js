@@ -20,16 +20,22 @@ module.exports = {
 			listen: function (emitter, context) {
 				emitter.on('job.status.phase.done', function (id, data) {
 					var phase = data.phase;
-					console.log('the ' + phase + ' phase has completed');
+					// console.log('the ' + phase + ' phase has completed');
 					console.log('data:'+JSON.stringify(data));
 					var change = job.ref.change;
 					var commit = job.ref.commit;
 					var project = job.ref.project;
 					var branch = job.ref.branch;
 
-				    console.log(project+':'+branch+':'+change+':'+commit);
-					if(phase == 'test') {
-						console.log('user:'+config.username+ ' pass:'+config.password);
+				    // console.log(project+':'+branch+':'+change+':'+commit);
+					if(phase == 'test' && typeof commit != 'undefined' && typeof change != 'undefined') {
+						// console.log('user:'+config.username+ ' pass:'+config.password);
+						var vote = -1;
+						var msg = 'Test failed! Please check Strider job:'+job._id;
+						if(data.exitCode === 0)  {
+							vote = 1;
+							msg = 'Test succcess!';
+						}
 						request.post({
 	    					'url': 'http://localhost:8080/a/changes/'+project+'~'+branch+'~'+change+'/revisions/'+commit+'/review',
 	    					'method':'POST',
@@ -40,10 +46,9 @@ module.exports = {
 	    						},
 	    					'json': true,
 	    					'body': {
-								"message": "Some nits need to be fixed.",
+								"message": msg,
 	    							"labels": {
-	      								"Code-Review": -1
-	    							}
+	      								"Code-Review": vote	    							}
 	    						}
 	    					}, function (error, response, body) {
 	    						console.log('got response');
