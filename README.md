@@ -1,8 +1,18 @@
-# strider-template
+# strider-gerrit-review
 
-This is a base template for developing Strider CD plugins to help you get your own plugin up and running faster.
+This is a gerrit review plugin which will post review comment and vote to gerrit 
+according the test result. 
 
-It demonstrates some basic front/backend functionality including configuration saving and some console.logging during the
-test process
+### User Guide
 
-## [Learn more about how Strider loads plugins here](https://github.com/Strider-CD/strider-extension-loader)
+In console:
+
+1. Copy the hook scripts under /gerrit-hooks to your gerrit install path's '/hooks' directory
+2. Make the scripts executable
+3. Change the Strider username, password, url and repo according your Strider setting
+
+In Strider UI:
+
+1. Drag Gerrit Review plugin into your plugin list
+2. Select the Gerrit Review plugin in the left panel, start to configure it
+3. Fill in the Gerrit URL, user name and password. 
